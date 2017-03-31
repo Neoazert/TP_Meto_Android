@@ -14,11 +14,9 @@ import java.util.ArrayList;
 //Main
 public class MainActivity extends AppCompatActivity {
 
-    private Button time_boutton;
-    private TextView textview;
     private Button json_boutton;
     private ListView vueListe;
-    ArrayAdapter<String> adapter;
+    MeteoAdapter adapter;
     ArrayList<String> myStringArray;
 
 
@@ -29,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         json_boutton =  (Button) findViewById(R.id.button6);
-        time_boutton =  (Button) findViewById(R.id.button);
-        textview = (TextView) findViewById(R.id.textView);
 
         vueListe = (ListView) findViewById(R.id.listView);
 
@@ -39,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, myStringArray);
+        adapter = new MeteoAdapter(this,myStringArray);
 
 
         vueListe.setAdapter(adapter);
@@ -60,14 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Time
-        time_boutton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                MyAsynTask tache = new MyAsynTask();
-                tache.execute(textview);
 
-            }
-        });
 
 
 

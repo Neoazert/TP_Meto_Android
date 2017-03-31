@@ -22,8 +22,10 @@ public class JSONtask extends AsyncTask<Object, Void, String> {
     @Override
     protected String doInBackground(Object... objects) {
 
+
         adapter = (ArrayAdapter) objects[0];
         maListe = (ArrayList<String>)  objects[1];
+        maListe.clear();
 
         System.out.println("meteo");
 
@@ -86,6 +88,7 @@ public class JSONtask extends AsyncTask<Object, Void, String> {
                 JSONObject meteo = (JSONObject) (JSONObject) weather.get(0);
 
                 System.out.println(" meteo : " + meteo.get("description"));
+
 
                 maListe.add(meteo.getString("description"));
 
