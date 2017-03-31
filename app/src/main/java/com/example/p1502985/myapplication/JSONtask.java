@@ -2,7 +2,6 @@ package com.example.p1502985.myapplication;
 
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,14 +17,26 @@ import java.util.ArrayList;
 public class JSONtask extends AsyncTask<Object, Void, String> {
 
     ArrayAdapter<String> adapter;
-    ArrayList<String> maListe ;
+
+
+    ArrayList<String> meteo_description;
+    ArrayList<String> meteo_min;
+    ArrayList<String> meteo_max;
+
+
     @Override
     protected String doInBackground(Object... objects) {
 
 
         adapter = (ArrayAdapter) objects[0];
-        maListe = (ArrayList<String>)  objects[1];
-        maListe.clear();
+        meteo_description = (ArrayList<String>)  objects[1];
+        meteo_description.clear();
+
+        meteo_min = (ArrayList<String>)  objects[2];
+        meteo_min.clear();
+
+        meteo_max = (ArrayList<String>)  objects[3];
+        meteo_max.clear();
 
         System.out.println("meteo");
 
@@ -76,7 +87,10 @@ public class JSONtask extends AsyncTask<Object, Void, String> {
 
 
                 System.out.println("min : " + main.getString("temp_min"));
+                meteo_min.add(main.getString("temp_min"));
+
                 System.out.println("max : " + main.getString("temp_max"));
+                meteo_max.add(main.getString("temp_max"));
 
                 JSONArray weather = reader2.getJSONArray("weather");
                 System.out.println("weather : " + weather.toString());
@@ -90,7 +104,7 @@ public class JSONtask extends AsyncTask<Object, Void, String> {
                 System.out.println(" meteo : " + meteo.get("description"));
 
 
-                maListe.add(meteo.getString("description"));
+                meteo_description.add(meteo.getString("description"));
 
 
             }

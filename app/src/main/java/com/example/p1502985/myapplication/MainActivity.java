@@ -3,10 +3,8 @@ package com.example.p1502985.myapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -17,7 +15,9 @@ public class MainActivity extends AppCompatActivity {
     private Button json_boutton;
     private ListView vueListe;
     MeteoAdapter adapter;
-    ArrayList<String> myStringArray;
+    ArrayList<String> description;
+    ArrayList<String> min;
+    ArrayList<String> max;
 
 
     @Override
@@ -31,11 +31,12 @@ public class MainActivity extends AppCompatActivity {
         vueListe = (ListView) findViewById(R.id.listView);
 
 
-        myStringArray = new ArrayList<>();
+        description = new ArrayList<>();
+        min =  new ArrayList<>();
+        max =  new ArrayList<>();
 
 
-
-        adapter = new MeteoAdapter(this,myStringArray);
+        adapter = new MeteoAdapter(this, description,min,max);
 
 
         vueListe.setAdapter(adapter);
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 //                System.out.print("aaaaaa " + adapter.getItem(0).toString() + "\n");
 
                 JSONtask tache = new JSONtask();
-                tache.execute(adapter,myStringArray);
+                tache.execute(adapter, description,min,max);
 
             }
         });
